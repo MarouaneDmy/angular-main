@@ -1,0 +1,23 @@
+<h1>Articles</h1>
+
+<button pButton label="Ajouter un article" class="p-button add-button" (click)="onAdd()"></button>
+
+<div class="articles-container" *ngIf="articles$ | async as articles">
+    <ng-container *ngIf="articles.length; else loading">
+        <p-card *ngFor="let article of articles; let i=index; trackBy: trackByArticle"
+        [header]="article.title">
+        {{ article.body }}        
+        <ng-template pTemplate="footer">
+            <button pButton label="Supprimer" class="p-button p-button-danger" (click)="onDelete(article.id)"></button>
+        </ng-template>
+    </p-card>
+    </ng-container>
+</div>
+
+<ng-container *ngIf="dialogCloseEvent$ | async"></ng-container>
+
+<ng-template #loading>
+    <p-skeleton height="150px"></p-skeleton>
+    <p-skeleton height="150px"></p-skeleton>
+    <p-skeleton height="150px"></p-skeleton>
+</ng-template>

@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let user of users$ | async">
+        {{ user.firstName }}
+        {{ user.lastName }}
+    </li>
+</ul>
+<p-progressSpinner *ngIf="loading$ | async"></p-progressSpinner>

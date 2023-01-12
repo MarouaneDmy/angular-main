@@ -1,0 +1,17 @@
+<div class="dialog-content">
+    <form [formGroup]="articleForm">
+        <span class="p-float-label">
+            <input formControlName="title" id="float-input" type="text" pInputText> 
+            <label for="float-input">Titre</label>
+        </span>
+        
+        <span class="p-float-label">
+            <textarea formControlName="body" id="float-input" rows="5" cols="30" pInputTextarea></textarea>
+            <label for="float-input">Contenu</label>
+        </span>
+    </form>
+</div>
+
+<div class="dialog-actions">
+    <button pButton label="Ajouter" class="p-button add-button" (click)="add()" [disabled]="articleForm.invalid"></button>
+</div>
