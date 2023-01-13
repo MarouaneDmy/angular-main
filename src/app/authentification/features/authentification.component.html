@@ -1,13 +1,33 @@
-<div class="connexion">
-    <h1 class="connexion__title">Connexion</h1>
-    <p class="connexion__subtitle">Saisissez un mail pour vous connecter</p>
-</div>
 <div class="login__container">
-    <form>
+    <div class="connexion">
+        <h1 class="connexion__title">Connexion</h1>
+        <ul>
+            <li *ngFor="let user of users$ | async">
+                {{ user.email }}
+                {{ user.password }}
+            </li>
+        </ul>
+        <p class="connexion__subtitle">Saisissez votre e-mail pour vous connecter</p>
+    </div>
+    <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()">
         <div class="input_field">
-            <input type="email" class="input-material_field" name="email" id="email" placeholder>
-            <label for="" class="input-material_label">Email</label>
+            <div [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }" class="input-container">
+                <input type="email" class="input-material_field" name="email" id="email" formControlName="email" placeholder>
+                <label for="" class="input-material_label">E-mail</label>
+                <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+                    <p *ngIf="formControls.email.errors.required"><font color="red">L'email est requis</font></p>
+                </div>
+            </div>
+
+            <div [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }" class="input-container">
+                <input type="password" class="input-material_field" name="password" id="password" formControlName="password"> 
+                <label for="" class="input-material_label">Mot de passe</label>
+                <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+                    <p *ngIf="formControls.password.errors.required"><font color="red">Mot de passe requis</font></p>
+                    <p *ngIf="formControls.password.errors.minLength"><font color="red">Le mot de passe doit contenir au moins 6 caractères</font></p>
+                </div>
+            </div>
         </div>
-        <button class="connexion__button">Connexion</button>
+        <input type="submit" class="submit-button" value="Connexion">
     </form>
 </div>
