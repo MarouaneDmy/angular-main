@@ -1,21 +1,21 @@
 <p-menubar [model]="items">
-    <div>
-      <div *ngIf="!connected">
-        <button
-          pButton
-          routerLink="/authentification"
-          label="Connexion"
-          icon="pi pi-power-off"
-        ></button>
-      </div>
-      <div *ngIf="connected" class="navbar-connected">
-        <p>{{ currentUser.firstName }} {{ currentUser.lastName }}</p>
-        <button
-          pButton
-          routerLink="/"
-          label="Deconnexion"
-          icon="pi pi-power-off"
-        ></button>
-      </div>
+  <div>
+    <div *ngIf="!currentUser">
+      <button
+        pButton
+        routerLink="/authentification"
+        label="Connexion"
+        icon="pi pi-power-off"
+      ></button>
     </div>
-  </p-menubar>
+    <div *ngIf="currentUser" class="navbar-connected">
+      <p>{{ currentUser.firstName }} {{ currentUser.lastName }}</p>
+      <button
+        pButton
+        (click)="logout()"
+        label="Deconnexion"
+        icon="pi pi-power-off"
+      ></button>
+    </div>
+  </div>
+</p-menubar>

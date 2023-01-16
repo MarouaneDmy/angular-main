@@ -9,18 +9,17 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-const devModules = environment.production ? [] : [
-  StoreDevtoolsModule.instrument({
-    maxAge: 25, // Retains last 25 states
-    logOnly: false, // Restrict extension to log-only mode
-  }),
-];
+const devModules = environment.production
+  ? []
+  : [
+      StoreDevtoolsModule.instrument({
+        maxAge: 25, // Retains last 25 states
+        logOnly: false, // Restrict extension to log-only mode
+      }),
+    ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,6 +30,6 @@ const devModules = environment.production ? [] : [
     ...devModules,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

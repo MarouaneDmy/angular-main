@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
 import { User, UsersService } from '../../users/data-access/users.service';
-import { AuthentificationService } from  '../../authentification/data-access/authentification.service';
+import { AuthentificationService } from '../../authentification/data-access/authentification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,31 +11,31 @@ import { AuthentificationService } from  '../../authentification/data-access/aut
 })
 export class NavbarComponent {
   items: MenuItem[];
+  currentUser: User;
 
-//   constructor(
-//     private authentificationService: AuthentificationService,
-//     private usersService: UsersService
-// ) {
-//     this.currentUser = this.authentificationService.currentUserValue;
-// }
+  constructor(
+    private router: Router,
+    private authenticationService: AuthentificationService
+  ) {
+    this.authenticationService.currentUser.subscribe(
+      (x) => (this.currentUser = x)
+    );
+  }
 
   ngOnInit() {
     this.items = [
-      { label: 'StarterKit' },
+      { label: 'StarterKit', routerLink: ['/'] },
       { label: 'Articles', icon: 'pi pi-fw pi-book', routerLink: ['/'] },
       { label: 'Users', icon: 'pi pi-fw pi-users', routerLink: ['/users'] },
-      { label: 'Profil', icon: 'pi pi-fw pi-user-edit', routerLink: ['/'] },
+      {
+        label: 'Profil',
+        icon: 'pi pi-fw pi-user-edit',
+        routerLink: ['/profil'],
+      },
     ];
   }
-
-  // en attendant d'avoir le vrai currentUser ensuite => currentUser : User;
-  currentUser = {
-    email: 'toto.dupond@gmail.com',
-    password: 'password1234',
-    firstName: 'Toto',
-    lastName: 'Dupond',
-    age: 10,
-  };
-
-  connected = false;
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/authentification']);
+  }
 }
