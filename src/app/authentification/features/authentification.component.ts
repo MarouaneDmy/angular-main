@@ -5,6 +5,7 @@ import { User, UsersService } from '../../users/data-access/users.service';
 import { AuthentificationService } from  '../data-access/authentification.service';
 import { UsersStore } from 'src/app/users/data-access/users.store';
 import { map, filter, mergeMap, } from 'rxjs/operators'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-authentification',
@@ -12,10 +13,12 @@ import { map, filter, mergeMap, } from 'rxjs/operators'
   styleUrls: ['./authentification.component.scss'],
   providers: [UsersStore]
 })
+
 export class AuthentificationComponent implements OnInit {
   loginForm: FormGroup;
   isSubmitted  =  false;
-  usersList: User[] = []
+  usersList: User[] = [];
+  singleUser: User[] = []
   userExist = false;
 
 
@@ -33,19 +36,17 @@ export class AuthentificationComponent implements OnInit {
         email: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6)]]
     });
-    /* this.usersService.getUsers().subscribe((data : User[]) => {
-      this.usersList.push(data)
-    }) */
-    // this.users$.pipe(map(user => user.firstName === this.loginForm.value.email))
-    /* this.usersService.getUsers().pipe(filter(user => user.email == this.loginForm.value.email))) */
+    this.usersService.getUsers().subscribe((data) => {
+      this.usersList = data
+    })
   }
   
   get formControls() { return this.loginForm.controls; }
   
   login(){
-    /* this.usersList.some(user => user.email === this.loginForm.value.email) */
+    this.singleUser = this.usersList.filter(user => user.email === this.loginForm.value.email)
     this.isSubmitted = true;
-    if(this.loginForm.invalid){
+    if(this.loginForm.invalid || this.singleUser[0].password !== this.loginForm.value.password){
       return;
     }
     this.authService.login(this.loginForm.value);

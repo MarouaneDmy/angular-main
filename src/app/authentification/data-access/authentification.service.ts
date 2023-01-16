@@ -12,7 +12,7 @@ export class AuthentificationService {
 
   constructor() { }
   public login(userInfo: User){
-    localStorage.setItem(userInfo.email, userInfo.password);
+    localStorage.setItem("userInfo",  JSON.stringify(userInfo));
   }
   public estConnecte(){
     return localStorage.getItem('ACCESS_TOKEN') !== null;
