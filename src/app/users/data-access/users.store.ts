@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { catchError, EMPTY, Observable, switchMap, tap } from 'rxjs';
-import { User, UsersService } from 'src/app/users/data-access/users.service';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, EMPTY, Observable, switchMap, tap, of } from 'rxjs';
+import { UsersService } from 'src/app/users/data-access/users.service';
+import { User } from 'src/app/users/data-access/user.model';
 
 interface UsersState {
   users: User[];
@@ -10,25 +12,13 @@ interface UsersState {
 
 @Injectable()
 export class UsersStore extends ComponentStore<UsersState> {
-
-  constructor(private readonly usersService: UsersService) {
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly actions$: Actions
+  ) {
     super({ users: [], loading: false });
   }
 
-  public users$: Observable<User[]> = this.select(state => state.users);
-  public loading$: Observable<boolean> = this.select(state => state.loading);
-
-  public getUsers = this.effect(($) => $.pipe(
-    tap(() => this.setState({users: [], loading: true })),
-    switchMap(() =>
-      this.usersService.getUsers().pipe(
-        tap({
-          next: (users) => this.setState({ users, loading: false }),
-          error: () => this.setState({ users: [], loading: false }),
-        }),
-        catchError(() => EMPTY)
-      )
-    )
-  ));
-
+  public users$: Observable<User[]> = this.select((state) => state.users);
+  public loading$: Observable<boolean> = this.select((state) => state.loading);
 }

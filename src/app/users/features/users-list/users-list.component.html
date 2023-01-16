@@ -1,7 +1,45 @@
-<ul>
-    <li *ngFor="let user of users$ | async">
-        {{ user.firstName }}
-        {{ user.lastName }}
-    </li>
-</ul>
-<p-progressSpinner *ngIf="loading$ | async"></p-progressSpinner>
+<!-- <p-progressSpinner *ngIf="loading$ | async"></p-progressSpinner> -->
+
+<div class="user-container">
+  <p-table
+    [value]="users$ | async"
+    styleClass="p-datatable-gridlines"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="caption">
+      <button
+        pButton
+        label="Ajouter un utilisateur"
+        class="p-button add-button"
+        (click)="onAdd()"
+      ></button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Email</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Age</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.email }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.age }}</td>
+        <td>
+          <button
+            pButton
+            label="Supprimer"
+            class="p-button p-button-danger"
+            (click)="onDelete(user.id)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<ng-container *ngIf="dialogCloseEvent$ | async"></ng-container>

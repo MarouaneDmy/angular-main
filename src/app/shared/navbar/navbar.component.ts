@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { User, UsersService } from '../../users/data-access/users.service';
-import { AuthentificationService } from  '../../authentification/data-access/authentification.service';
+import { UsersService } from '../../users/data-access/users.service';
+import { User } from '../../users/data-access/user.model';
+import { AuthentificationService } from '../../authentification/data-access/authentification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +12,12 @@ import { AuthentificationService } from  '../../authentification/data-access/aut
 export class NavbarComponent {
   items: MenuItem[];
 
-//   constructor(
-//     private authentificationService: AuthentificationService,
-//     private usersService: UsersService
-// ) {
-//     this.currentUser = this.authentificationService.currentUserValue;
-// }
+  //   constructor(
+  //     private authentificationService: AuthentificationService,
+  //     private usersService: UsersService
+  // ) {
+  //     this.currentUser = this.authentificationService.currentUserValue;
+  // }
 
   ngOnInit() {
     this.items = [
@@ -33,7 +34,7 @@ export class NavbarComponent {
     password: 'password1234',
     firstName: 'Toto',
     lastName: 'Dupond',
-    age: 10,
+    age: '10',
   };
 
   connected = false;

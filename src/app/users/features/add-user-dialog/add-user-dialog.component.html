@@ -1,0 +1,53 @@
+<div class="dialog-content">
+  <form [formGroup]="userForm">
+    <span class="p-float-label">
+      <input formControlName="email" id="float-input" type="text" pInputText />
+      <label for="float-input">Email</label>
+    </span>
+
+    <span class="p-float-label">
+      <input
+        formControlName="password"
+        id="float-input"
+        type="password"
+        pInputText
+      />
+      <label for="float-input">Mot de Passe</label>
+    </span>
+
+    <span class="p-float-label">
+      <input
+        formControlName="firstName"
+        id="float-input"
+        type="text"
+        pInputText
+      />
+      <label for="float-input">Prénom</label>
+    </span>
+
+    <span class="p-float-label">
+      <input
+        formControlName="lastName"
+        id="float-input"
+        type="text"
+        pInputText
+      />
+      <label for="float-input">Nom</label>
+    </span>
+
+    <span class="p-float-label">
+      <input formControlName="age" id="float-input" type="text" pInputText />
+      <label for="float-input">Age</label>
+    </span>
+  </form>
+</div>
+
+<div class="dialog-actions">
+  <button
+    pButton
+    label="Ajouter"
+    class="p-button add-button"
+    (click)="add()"
+    [disabled]="userForm.invalid"
+  ></button>
+</div>
