@@ -49,7 +49,7 @@ export class AuthentificationComponent implements OnInit {
     if(this.loginForm.invalid || this.singleUser[0].password !== this.loginForm.value.password){
       return;
     }
-    this.authService.login(this.loginForm.value);
+    this.authService.login(this.singleUser[0]);
     this.router.navigateByUrl('/');
   }
   
