@@ -16,6 +16,7 @@
                 <label for="" class="input-material_label">E-mail</label>
                 <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
                     <p *ngIf="formControls.email.errors.required"><font color="red">L'email est requis</font></p>
+                    <p *ngIf="formControls.email.errors.email"><font color="red">Adresse mail incorrecte</font></p>
                 </div>
             </div>
 
@@ -24,7 +25,8 @@
                 <label for="" class="input-material_label">Mot de passe</label>
                 <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
                     <p *ngIf="formControls.password.errors.required"><font color="red">Mot de passe requis</font></p>
-                    <p *ngIf="formControls.password.errors.minLength"><font color="red">Le mot de passe doit contenir au moins 6 caractères</font></p>
+                    <p *ngIf="formControls.password.errors.minlength"><font color="red">Le mot de passe doit contenir au moins 6 caractères</font></p>
+                    <p *ngIf="formControls.password.errors.maxlength"><font color="red">Le mot de passe doit contenir maximum 20 caractères</font></p>
                 </div>
             </div>
         </div>

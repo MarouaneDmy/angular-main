@@ -11,6 +11,12 @@ export class AuthentificationService {
   public currentUser: Observable<User>;
 
   constructor() { }
+  /**
+   * The function takes a User object as a parameter, converts it to a JSON string, and stores it in
+   * local storage
+   * @param {User} userInfo - User - This is the user object that is passed in from the login
+   * component.
+   */
   public login(userInfo: User){
     localStorage.setItem("userInfo",  JSON.stringify(userInfo));
   }
