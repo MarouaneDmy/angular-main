@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
+# Installation
+
+Run `npm install --save --legacy-peer-deps` instead of `npm install` command to fix Unable to resolve dependency tree error in Angular while installing npm packages.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
