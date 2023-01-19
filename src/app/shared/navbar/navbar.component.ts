@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
-import { User, UsersService } from '../../users/data-access/users.service';
+import { User } from '../../users/data-access/users.service';
 import { AuthentificationService } from '../../authentification/data-access/authentification.service';
 
 @Component({

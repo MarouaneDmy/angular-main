@@ -4,6 +4,7 @@ import { ProfilRoutingModule } from './profil-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../users/data-access/users.service';
 import { ProfilComponent } from './features/profil.component';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [ProfilComponent],
@@ -12,6 +13,7 @@ import { ProfilComponent } from './features/profil.component';
     ProfilRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ButtonModule,
   ],
   providers: [UsersService],
 })

@@ -15,6 +15,10 @@ export class AuthentificationService {
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
   /**
    * The function takes a User object as a parameter, converts it to a JSON string, and stores it in
    * local storage

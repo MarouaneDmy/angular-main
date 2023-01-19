@@ -1,6 +1,6 @@
 <p-menubar [model]="items">
   <div>
-    <div *ngIf="!currentUser">
+    <div *ngIf="!currentUser; else connected">
       <button
         pButton
         routerLink="/authentification"
@@ -8,14 +8,16 @@
         icon="pi pi-power-off"
       ></button>
     </div>
-    <div *ngIf="currentUser" class="navbar-connected">
-      <p>{{ currentUser.firstName }} {{ currentUser.lastName }}</p>
-      <button
-        pButton
-        (click)="logout()"
-        label="Deconnexion"
-        icon="pi pi-power-off"
-      ></button>
-    </div>
+    <ng-template #connected class="navbar-connected">
+      <div>
+        <p>{{ currentUser.firstName }} {{ currentUser.lastName }}</p>
+        <button
+          pButton
+          (click)="logout()"
+          label="Deconnexion"
+          icon="pi pi-power-off"
+        ></button>
+      </div>
+    </ng-template>
   </div>
 </p-menubar>

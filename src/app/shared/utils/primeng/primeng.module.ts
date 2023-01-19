@@ -73,8 +73,6 @@ import { MenubarModule } from 'primeng/menubar';
     ProgressSpinnerModule,
     MenubarModule,
   ],
-  providers: [
-    DialogService
-  ]
+  providers: [DialogService],
 })
-export class PrimeNGModule { }
+export class PrimeNGModule {}

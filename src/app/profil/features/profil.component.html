@@ -1,1 +1,22 @@
-<p>Page Profil !</p>
+<h2>Mon Profil</h2>
+<p>
+  Prénom : <strong>{{ currentUser.firstName }}</strong>
+</p>
+<p>
+  Nom de Famille : <strong>{{ currentUser.lastName }}</strong>
+</p>
+<p>
+  Age : <strong>{{ currentUser.age }}</strong>
+</p>
+<p>
+  Email: <strong>{{ currentUser.email }}</strong>
+</p>
+<button
+  pButton
+  pRipple
+  icon="pi pi-pencil"
+  type="button"
+  label="Modifier"
+  class="p-button-raised p-button-info"
+  (click)="update()"
+></button>
